@@ -1,0 +1,8 @@
+(tsmcOpts coa_sorting_num) ""
+(tsmcOpts tddb_fail_perc) ""
+(tsmcOpts tddb_stress_time) ""
+(tsmcOpts tmiParameter) ""
+(tsmcOpts tmiParameterOptions) nil
+(tsmcOpts tmiParameterValue) ""
+(tsmcOpts tmicoaflag) ""
+(tsmcOpts tmitddbflag) ""

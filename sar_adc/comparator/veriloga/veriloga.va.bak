@@ -1,0 +1,69 @@
+`include "discipline.h"
+`include "constants.h"
+
+// $Date: 1997/08/28 05:48:45 $
+// $Revision: 1.1 $
+//
+//
+// Based on the OVI Verilog-A Language Reference Manual, version 1.0 1996
+//
+//
+ 
+
+
+//--------------------
+// comparator
+//
+// -  comparator
+//
+// vcompp:	(val,flow)
+// vcompn:	reference to which 'vcompp' is compared (val,flow)
+// vout:	comparator output (val,flow)
+//
+// INSTANCE parameters
+//    vout_high  = maximum output of the comparator  (val)
+//    vout_low   = minimum output of the comparator  (val)
+//    vcompp_offset = subtracted from 'vcompp' before comparason to vcompn (val)
+//    comp_slope   = determines the sensitivity of the comparator []
+//
+// MODEL parameters
+//    {none}
+//
+// Compares ('vcompp'-'vcompp_offset') to 'vcompn' - the output is related to
+// their difference by a tanh relationship.
+//
+// If the difference >>> 'vcompn', 'vout' is 'vout_high'.
+// If the difference = 'vcompn', 'vout' is ('vout_high' + 'vout_low')/2.
+// If the difference <<< 'vcompn', 'vout' is 'vout_low'.
+// Intermediate points are fitting to a tanh scaled by 'comp_slope'.
+//
+
+module comparator(vdd,vss,clk,vcompp, vcompn, vout);
+input vcompp, vcompn;
+output vout;
+electrical vcompp, vcompn, vout;
+parameter real vout_high = 1.8;
+parameter real vout_low = 0;
+parameter real vcomp_offset = 0;
+parameter real comp_slope = 1000;
+
+
+   analog begin
+
+      @ ( initial_step ) begin
+	 if (vout_high <= vout_low) begin
+	    $display("Range specification error.  vout_high = (%E) less than vout_low = (%E).\n", vout_high, vout_low );
+	    $finish;
+	 end
+      end
+
+      V(vout) <+ 0.5 * (vout_high - vout_low)
+                        * tanh(comp_slope*(V(vin, vcompn)- vcomp_offset))
+                      + (vout_high + vout_low)/2;
+   end
+endmodule
+
+
+
+
+

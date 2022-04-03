@@ -1,0 +1,62 @@
+`include "discipline.h"
+`include "constants.h"
+
+// $Date: 1997/08/28 05:46:27 $
+// $Revision: 1.1 $
+//
+//
+// Based on the OVI Verilog-A Language Reference Manual, version 1.0 1996
+//
+//
+ 
+
+
+//--------------------
+// sw
+//
+// -  switch
+//
+// vp,vn:		output terminals [V,A]
+// vclk,vclk_b: 	control terminals [V,A]
+//
+// INSTANCE parameters
+//    vth = threshold voltage [V]
+//
+// MODEL parameters
+//    {none}
+//
+// If ('vclk' - 'vclk_b' > 'vth') then the branch between 'vp' and 'vn'
+// is shorted. Otherwise the branch between 'vp' and 'vn' is opened
+//
+
+module sw(vp, vn, vclk, vclk_b);
+input vclk, vclk_b;
+inout vp, vn;
+electrical vp, vn, vclk, vclk_b;
+parameter real vth = 0.9;
+
+   integer sw_state;
+	
+   analog begin
+      sw_state = (V(vclk,vclk_b) > vth) ? 1: 0;
+
+      @ (cross(V(vclk, vclk_b) - vth, 1, 1.0, vclk.potential.abstol) )
+      	 sw_state = 1;
+      @ (cross(V(vclk, vclk_b) - vth, -1, 1.0, vclk.potential.abstol) )
+      	 sw_state = 0;
+
+      if (sw_state == 0)begin
+      	 I(vp,vn) <+ 0.0;
+      end
+      else begin
+      	 V(vp,vn) <+ 0.0 ;
+      end
+   end
+endmodule
+
+
+
+
+
+
+

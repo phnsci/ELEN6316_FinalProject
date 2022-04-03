@@ -1,0 +1,3 @@
+projectDir = '"/proj/gpfs/qhc/ICM_WA/qhc_s22et_dev_367/simulation"
+designInfo = '("sar_adc_tb" "sar_adc_top_tb" "schematic" "spectre")
+descriptionText = "None"

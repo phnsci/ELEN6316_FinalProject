@@ -1,0 +1,5 @@
+"_DEXPR_1" (tran_stop fields "VAR(\"tstop\")")
+"_DEXPR_2" (tran_step options "VAR(\"tstep\")")
+"_DEXPR_3" (tran_maxstep options "VAR(\"tstep\")")
+"_DEXPR_4" (tran_minstep options "VAR(\"tstep\")")
+"_DEXPR_5" (tran_strobeperiod options "VAR(\"tstep\")")
