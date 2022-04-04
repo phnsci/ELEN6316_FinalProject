@@ -44,7 +44,7 @@
 
 
 
-module adc_8bit( vdd, vss, vrefp, vrefn, vd7, vd6, vd5, vd4, vd3, vd2, vd1, vd0, vin, clk_sample, clk_logic );
+module adc_8bit( vdd, vss, vrefp, vrefn, vd7, vd6, vd5, vd4, vd3, vd2, vd1, vd0, vinp, vinn, clk_sample, clk_logic );
 electrical vd7, vd6, vd5, vd4, vd3, vd2, vd1, vd0, vin, clk_sample;
 parameter real trise = 1n from [0:inf);
 parameter real tfall = 1n from [0:inf);
