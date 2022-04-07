@@ -14,7 +14,7 @@
 // -  8 bit analog to digital converter
 //
 // vin:		[V,A]
-// vclk:	[V,A]
+// clk_sample:	[V,A]
 // vd0..vd7:	data output terminals	[V,A]
 //
 // INSTANCE parameters
@@ -44,15 +44,15 @@
 
 
 
-module adc_8bit(vd7,vd6,vd5,vd4,vd3,vd2,vd1,vd0,vin,vclk);
-electrical vd7, vd6, vd5, vd4, vd3, vd2, vd1, vd0, vin, vclk;
-parameter real trise = 0 from [0:inf);
-parameter real tfall = 0 from [0:inf);
+module adc_8bit( vdd, vss, vrefp, vrefn, vd7, vd6, vd5, vd4, vd3, vd2, vd1, vd0, vinp, vinn, clk_sample, clk_logic );
+electrical vd7, vd6, vd5, vd4, vd3, vd2, vd1, vd0, vin, clk_sample;
+parameter real trise = 1n from [0:inf);
+parameter real tfall = 1n from [0:inf);
 parameter real tdel = 0 from [0:inf);
 parameter real mismatch_fact=0 from [0:inf);
-parameter real vlogic_high = 5;
+parameter real vlogic_high = 1.8;
 parameter real vlogic_low  = 0;
-parameter real vtrans_clk     = 2.5;
+parameter real vtrans_clk     = 0.9;
 parameter real vref        = 1.0;
 
 
@@ -84,7 +84,7 @@ parameter real vref        = 1.0;
          halfref = vref / 2;
       end
 
-      @ (cross(V(vclk) - vtrans_clk, 1, 1.0, vclk.potential.abstol)) begin
+      @ (cross(V(clk_sample) - vtrans_clk, 1, 1.0, clk_sample.potential.abstol)) begin
          unconverted = V(vin);
          for (i = `NUM_ADC_BITS-1; i >= 0 ; i = i - 1) begin
             vd[i] = 0;
