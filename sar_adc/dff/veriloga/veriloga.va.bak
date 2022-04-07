@@ -1,0 +1,152 @@
+// VerilogA for bmslogic, dff_sr, veriloga
+// Last Updated: 7/23/03 (ronv)
+//
+// dff_c_sr
+//
+// -  d flip-flop with set and reset control,
+//    triggered on the rising edge
+//
+//LIMITATIONS:
+// This FF is positive edge-triggered, fan-in & fan-out, setup time, hold time
+// recovery time (time between remove set/reset to clk input) are not included.
+// 
+// NOTE:
+//   "Q" is used in disciplines.h as charge access, which would cause a
+//   conflict in Verilog-A for Spectre and AMS Designer through release
+//   IC50/LDV50.  Output pin name changed to "Qo" here, so mapping must
+//   be taken care of in the CDF to match symbol pin name of "Q".
+
+// INCLUDE FILES:
+`include "constants.h"
+`include "discipline.h"
+
+//==============================================================================
+module dff_sr (Qo, Q_, CLK, D, R, S, VDD, VSS);
+output Qo;
+electrical Qo;
+output Q_;
+electrical Q_;
+input CLK;
+electrical CLK;
+input D;
+electrical D;
+input R;
+electrical R;
+input S;
+electrical S;
+
+// INSTANCE PARAMETERS:  
+  parameter real vhi = 3;		// voltage [v] for logic high
+  parameter real vlo = 0 from (-inf:vhi) ; // voltage [v] for logic low
+  parameter real vthresh = 0.5*(vhi+vlo) ; // switch voltage [v]
+
+  parameter real tcplhq = 5n from (0: 1m] ;
+  			// prop delay from clock to Q, low to high
+  parameter real tcphlq = 5n from (0: 1m] ;
+  			// prop delay from clock to Q, high to low 
+  parameter real tcplhq_ = 5n from (0: 1m] ;
+  			// prop delay from clock to Q_, low to high
+  parameter real tcphlq_ = 5n from (0: 1m] ;
+  			// prop delay from clock to Q_, high to low 
+  parameter real tspq = 5n from (0: 1m] ;
+  			// prop delay from set to Q and Q_
+  parameter real trpq = 5n from (0: 1m] ;
+  			// prop delay from reset to Q and Q_
+  parameter real tr = tcplhq from (0:2*tcplhq]; // rise time [s] for gate output
+  parameter real tf = tcphlq from (0:2*tcplhq]; // fall time [s] for gate output
+  parameter integer initval = -1 from [-1:1] ; // initial value for Q (X,0,1)
+  
+// LOCAL VARIABLES:
+  real tdelq;  
+  real tdelq_;
+  integer s;
+  integer r;
+  integer d;  
+  integer qnow;
+  integer q_now;
+  integer q;
+  integer q_;
+  integer xflag;
+  
+  analog function real tdelay;
+     input outnow, out, tplh, tphl, trise, tfall;
+     real  tplh, tphl, trise, tfall;
+     integer outnow, out;
+         case (1)
+            (outnow > out) : begin  // high to low on Q 
+              tdelay = tphl - tf/2.0 ;     
+              if (tdelay < 0.05*tf) tdelay = 0; // delay too small, neglect.
+            end 
+            (outnow < out) : begin // low to high on Q
+              tdelay = tplh - tr/2.0 ;
+              if (tdelay < 0.05*tr) tdelay = 0; // delay too small, neglect.
+            end
+            (outnow == out) :if (tdelay < 0.05*tr) tdelay = 0; // no change
+         endcase
+  endfunction
+  
+  analog begin
+     @ (initial_step) begin
+	if (vthresh > vhi || vthresh < vlo) begin
+	         $display
+	("%M: Inconsistent input threshold specification w/logic family.\n");
+	end
+	case (initval)
+	   1: begin q = 1; q_ = 0; end
+	   0: begin q = 0; q_ = 1; end
+	   -1: begin q = (V(D) > vthresh); q_ = (V(D) <= vthresh); end
+	   default begin q = (V(D) > vthresh); q_ = (V(D) <= vthresh); end
+	endcase
+	xflag = 1;
+     end 		        
+     
+      @ (cross(V(S) - vthresh, +1) )	xflag = 1;
+      @ (cross(V(R) - vthresh, +1) )	xflag = 1;
+      @ (cross(V(CLK) - vthresh, +1) )	xflag = 1;
+      
+      if (xflag) begin
+         xflag = 0;
+         s = V(S) > vthresh;
+	 r = V(R) > vthresh;
+	 d = V(D) > vthresh;
+	 qnow = q;
+	 q_now = q_;
+	 if ( (s==1) && (r==1) ) begin 
+	 	   q = 1; 
+		   q_ = 1; 
+		   tdelq = tdelay(qnow, q, tspq, tspq, tr, tf);
+		   tdelq_ = tdelay(q_now, q_, trpq, trpq, tr, tf);
+		   // assume R/S to Q/Q_ delay time for "high to low" and 
+		   // "low to high" are the same.
+	 end
+	 if ( (s==1) && (r==0) ) begin 
+ 	 	   q = 1; 
+		   q_ = 0; 
+		   tdelq = tdelay(qnow, q, tspq, tspq, tr, tf);
+		   tdelq_ = tdelay(q_now, q_, trpq, trpq, tr, tf);
+	 end
+	 if ( (s==0) && (r==1) ) begin 
+ 	 	   q = 0; 
+		   q_ = 1; 
+		   tdelq = tdelay(qnow, q, tspq, tspq, tr, tf);
+		   tdelq_ = tdelay(q_now, q_, trpq, trpq, tr, tf);
+	 end 
+	 if ( (s==0) && (r==0) ) begin 
+	 	   if (d) begin 
+		      q = 1; 
+		      q_ = 0; 
+		      tdelq = tdelay(qnow, q, tcplhq, tcphlq, tr, tf);
+		      tdelq_ = tdelay(q_now, q_, tcplhq_, tcphlq_, tr, tf);
+		   end
+	 	   if (!d) begin 
+		      q = 0; 
+		      q_ = 1; 
+		      tdelq = tdelay(qnow, q, tcplhq, tcphlq, tr, tf);
+		      tdelq_ = tdelay(q_now, q_, tcplhq_, tcphlq_, tr, tf);
+		   end
+	 end
+      end
+      V(Qo) <+ transition( q ? vhi : vlo, tdelq, tr, tf);
+      V(Q_)<+ transition( q_? vhi : vlo, tdelq_, tr, tf);
+    end
+endmodule
