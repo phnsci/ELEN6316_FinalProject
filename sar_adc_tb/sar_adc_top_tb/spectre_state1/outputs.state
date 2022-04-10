@@ -219,7 +219,11 @@ tmp1->depList = nil
 tmp1->type = nil
 tmp1->areaTable = nil
 tmp1->selectionDetail = nil
+<<<<<<< HEAD
 tmp1->value = 3.4038167671923610e+01
+=======
+tmp1->value = nil
+>>>>>>> 129684c8823e5cb99ac3032e8cc0c53c0eb79d97
 tmp1->plot = 't
 tmp1->save = nil
 tmp1->march = nil
@@ -332,7 +336,11 @@ tmp1->depList = nil
 tmp1->type = nil
 tmp1->areaTable = nil
 tmp1->selectionDetail = nil
+<<<<<<< HEAD
 tmp1->value = 6.0599554768678303e+01
+=======
+tmp1->value = nil
+>>>>>>> 129684c8823e5cb99ac3032e8cc0c53c0eb79d97
 tmp1->plot = 't
 tmp1->save = nil
 tmp1->march = nil
@@ -445,7 +453,11 @@ tmp1->depList = nil
 tmp1->type = nil
 tmp1->areaTable = nil
 tmp1->selectionDetail = nil
+<<<<<<< HEAD
 tmp1->value = 5.3611360240319117e+00
+=======
+tmp1->value = nil
+>>>>>>> 129684c8823e5cb99ac3032e8cc0c53c0eb79d97
 tmp1->plot = 't
 tmp1->save = nil
 tmp1->march = nil

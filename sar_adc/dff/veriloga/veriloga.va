@@ -21,7 +21,11 @@
 `include "discipline.h"
 
 //==============================================================================
+<<<<<<< HEAD
 module dff_sr (Qo, Q_, CLK, D, R, S, VDD, VSS);
+=======
+module dff_sr (Qo, Q_, CLK, CLK_bar, D, R, R_bar, S, S_bar, VDD, VSS);
+>>>>>>> 129684c8823e5cb99ac3032e8cc0c53c0eb79d97
 output Qo;
 electrical Qo;
 output Q_;
@@ -34,9 +38,18 @@ input R;
 electrical R;
 input S;
 electrical S;
+<<<<<<< HEAD
 
 // INSTANCE PARAMETERS:  
   parameter real vhi = 3;		// voltage [v] for logic high
+=======
+input R_bar;
+input S_bar;
+input CLK_bar;
+
+// INSTANCE PARAMETERS:  
+  parameter real vhi = 1.8;		// voltage [v] for logic high
+>>>>>>> 129684c8823e5cb99ac3032e8cc0c53c0eb79d97
   parameter real vlo = 0 from (-inf:vhi) ; // voltage [v] for logic low
   parameter real vthresh = 0.5*(vhi+vlo) ; // switch voltage [v]
 
@@ -57,7 +70,11 @@ electrical S;
   parameter integer initval = -1 from [-1:1] ; // initial value for Q (X,0,1)
   
 // LOCAL VARIABLES:
+<<<<<<< HEAD
   real tdelq;  
+=======
+   real tdelq;  
+>>>>>>> 129684c8823e5cb99ac3032e8cc0c53c0eb79d97
   real tdelq_;
   integer s;
   integer r;

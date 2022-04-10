@@ -39,6 +39,10 @@
 (analysis tran fields psdminfreq) ""
 (analysis tran fields psdstarttime) ""
 (analysis tran fields stop) "VAR(\"tstop\")"
+<<<<<<< HEAD
+=======
+(analysis tran fields tranNoise) ""
+>>>>>>> 129684c8823e5cb99ac3032e8cc0c53c0eb79d97
 (analysis tran fields tranNoiseMultiRuns) ""
 (analysis tran fields trannoisemethod) "default"
 (analysis tran fields transtrobe) ""
@@ -102,9 +106,15 @@
 (analysis tran options lteratio) ""
 (analysis tran options maxDevicesInReport) ""
 (analysis tran options maxiters) "5"
+<<<<<<< HEAD
 (analysis tran options maxstep) "VAR(\"tstep\")"
 (analysis tran options method) ""
 (analysis tran options minstep) "VAR(\"tstep\")"
+=======
+(analysis tran options maxstep) ""
+(analysis tran options method) ""
+(analysis tran options minstep) ""
+>>>>>>> 129684c8823e5cb99ac3032e8cc0c53c0eb79d97
 (analysis tran options nestlvl) ""
 (analysis tran options oppoint) ""
 (analysis tran options oscfreq) ""

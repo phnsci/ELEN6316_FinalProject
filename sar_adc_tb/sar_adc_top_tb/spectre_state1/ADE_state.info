@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 projectDir = '"/proj/gpfs/qhc/ICM_WA/qhc_s22et_dev_367/simulation"
+=======
+projectDir = '"/proj/gpfs/qhc/columbia/wa/ELEN6316_FinalProject/simulation"
+>>>>>>> 129684c8823e5cb99ac3032e8cc0c53c0eb79d97
 designInfo = '("sar_adc_tb" "sar_adc_top_tb" "schematic" "spectre")
 descriptionText = "None"
