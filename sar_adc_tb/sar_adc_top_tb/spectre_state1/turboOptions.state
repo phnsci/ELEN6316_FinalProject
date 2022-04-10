@@ -42,8 +42,8 @@
 (turboOpts spectreXNumThreads) ""
 (turboOpts spectreXPreset) "MX"
 (turboOpts spectreXSocketHost) "1"
-(turboOpts uniMode) "Spectre"
-(turboOpts uniModeSpectreX) "Spectre"
+(turboOpts uniMode) "APS"
+(turboOpts uniModeSpectreX) "APS"
 (turboOpts virtualGroundNodes) nil
 (turboOpts virtualPowerNodeListBox) (nil choices nil value nil)
 (turboOpts virtualPowerNodeValue) nil

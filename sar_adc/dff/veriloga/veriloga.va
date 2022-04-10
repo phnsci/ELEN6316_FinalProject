@@ -34,9 +34,12 @@ input R;
 electrical R;
 input S;
 electrical S;
+input R_bar;
+input S_bar;
+input CLK_bar;
 
 // INSTANCE PARAMETERS:  
-  parameter real vhi = 3;		// voltage [v] for logic high
+  parameter real vhi = 1.8;		// voltage [v] for logic high
   parameter real vlo = 0 from (-inf:vhi) ; // voltage [v] for logic low
   parameter real vthresh = 0.5*(vhi+vlo) ; // switch voltage [v]
 
@@ -57,7 +60,7 @@ electrical S;
   parameter integer initval = -1 from [-1:1] ; // initial value for Q (X,0,1)
   
 // LOCAL VARIABLES:
-  real tdelq;  
+   real tdelq;  
   real tdelq_;
   integer s;
   integer r;
