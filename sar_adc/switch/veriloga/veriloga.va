@@ -29,35 +29,20 @@
 // is shorted. Otherwise the branch between 'vp' and 'vn' is opened
 //
 
-<<<<<<< HEAD
-module sw(vp, vn, vctrl);
-input vctrl;
-inout vp, vn;
-electrical vp, vn, vctrl;
-=======
 module sw(vp, vn, vctrlp, vctrln);
 input vctrlp;
 inout vp, vn;
 electrical vp, vn, vctrlp;
->>>>>>> 129684c8823e5cb99ac3032e8cc0c53c0eb79d97
 parameter real vth = 0.9;
 
    integer sw_state;
 	
    analog begin
-<<<<<<< HEAD
-      sw_state = (V(vctrl) > vth) ? 1: 0;
-
-      @ (cross(V(vctrl) - vth, 1, 1.0, vctrl.potential.abstol) )
-      	 sw_state = 1;
-      @ (cross(V(vctrl) - vth, -1, 1.0, vctrl.potential.abstol) )
-=======
       sw_state = (V(vctrlp) > vth) ? 1: 0;
 
       @ (cross(V(vctrlp) - vth, 1, 1.0, vctrlp.potential.abstol) )
       	 sw_state = 1;
       @ (cross(V(vctrlp) - vth, -1, 1.0, vctrlp.potential.abstol) )
->>>>>>> 129684c8823e5cb99ac3032e8cc0c53c0eb79d97
       	 sw_state = 0;
 
       if (sw_state == 0)begin
