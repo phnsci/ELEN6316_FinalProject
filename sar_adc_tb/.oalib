@@ -1,9 +1,5 @@
 <?xml version="1.0"?>
 
 <Library DMSystem="oaDMFileSys">
-<<<<<<< HEAD
-=======
     <oaDMFileSys libReadOnly="No"
-                 origFileSystem="Unix"/>
->>>>>>> 129684c8823e5cb99ac3032e8cc0c53c0eb79d97
 </Library>
