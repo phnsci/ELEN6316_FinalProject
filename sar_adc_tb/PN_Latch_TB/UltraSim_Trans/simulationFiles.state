@@ -1,0 +1,16 @@
+UltraSimEVcdAutostop nil
+UltraSimEVcdFile ""
+UltraSimEVcdInfo ""
+UltraSimHlcheck "0"
+UltraSimVcdAutostop nil
+UltraSimVcdFile ""
+UltraSimVcdInfo ""
+UltraSimVecAutostop nil
+UltraSimVectorFile ("/homes/user/stud/fall20/phn2105/Cadence/ELEN6316_FinalProject/Vector_File_Folder/latch.vec")
+allDefinitionFiles nil
+allIncludedPaths nil
+allStimulusFiles nil
+allUltraSimVectorFile ((t "/homes/user/stud/fall20/phn2105/Cadence/ELEN6316_FinalProject/Vector_File_Folder/latch.vec" "0"))
+definitionFiles nil
+includePath ""
+stimulusFile nil
