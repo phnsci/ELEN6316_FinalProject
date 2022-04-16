@@ -1,0 +1,3 @@
+# ignore files that have following extensions
+*.cdslck
+*.cdslck.*
