@@ -1,0 +1,43 @@
+; Enable waveform output, so that you can still see waveforms in your simulation
+output_wf 1
+
+; RADIX specifies the number of bits of each vector
+radix 1 1 1 1 1 1
+
+; VNAME assigns name to your vector.
+vname CLK CLK_BAR SET RST D Q
+
+; IO specifies the direction (input/output) of a vector
+io i i i i i o
+
+; TUNIT means any number representing time will have the following unit
+tunit 0.1us
+
+; CHK_WINDOW specifies the window that the simulator will check for your output
+chk_window -3 4 1 period=10
+
+; PERIOD specifies the period of your signal
+period 10
+
+; TRISE and TFALL specifies the rising time and falling time
+trise 1
+tfall 1
+
+; VIH and VIL specifies input high voltage and low voltage respectively
+vih 1.8
+vil 0.0
+
+; VOH and VOL specifies output high voltage and low voltage respectively
+voh 1.62
+vol 0.18
+
+; Tabular vector data
+;CLK CLK_BAR SET RST D Q
+  0      1    0   0  0 0
+  0      1    0   0  0 0
+  1      0    0   0  0 0
+  1      0    0   0  0 0
+  0      1    0   0  1 0
+  0      1    0   0  1 1
+  1      0    0   0  1 0
+  1      0    0   0  0 1
