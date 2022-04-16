@@ -20,8 +20,8 @@ chk_window -3 4 1 period=10
 period 10
 
 ; TRISE and TFALL specifies the rising time and falling time
-trise 1
-tfall 1
+trise 0
+tfall 0
 
 ; VIH and VIL specifies input high voltage and low voltage respectively
 vih 1.8
@@ -37,7 +37,7 @@ vol 0.18
   0      1    0   0  0 0
   1      0    0   0  0 0
   1      0    0   0  0 0
-  0      1    0   0  1 0
+  0      1    0   0  0 0
   0      1    0   0  1 1
   1      0    0   0  1 0
   1      0    0   0  0 1
