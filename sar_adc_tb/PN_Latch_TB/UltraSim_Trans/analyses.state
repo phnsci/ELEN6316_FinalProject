@@ -1,6 +1,6 @@
 analysis(tran fields enable) (t)
 analysis(tran fields saveOP) nil
-analysis(tran fields stop) "8u"
+analysis(tran fields stop) "20u"
 analysis(tran options infotimes) nil
 analysis(tran options max_subckt) ""
 analysis(tran options maxstep_window) nil
