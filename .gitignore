@@ -1,6 +1,5 @@
 # ignore files that have following extensions
 *.cdslck
 *.cdslck.*
-*.oa*
 libManager.log
 
