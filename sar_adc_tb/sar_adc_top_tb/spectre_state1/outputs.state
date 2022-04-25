@@ -107,7 +107,7 @@ tmp1->type = nil
 tmp1->areaTable = nil
 tmp1->selectionDetail = nil
 tmp1->value = nil
-tmp1->plot = 't
+tmp1->plot = nil
 tmp1->save = nil
 tmp1->march = nil
 tmp1->implicit = nil
@@ -514,13 +514,28 @@ tmp2 = (let
 tmp1 = (let
 (tmp1 tmp2 tmp3 tmp4 tmp5 tmp6 tmp7 tmp8 tmp9 tmp10 tmp11)
 tmp1 = "<Click_here_to_add_an_Instance>"
+tmp2 = (let
+(tmp1 tmp2)
+tmp1 = 't
 tmp2 = ""
-tmp3 = ""
-tmp4 = ""
-tmp5 = ""
-tmp6 = ""
-tmp7 = ""
-tmp8 = ""
+(list tmp1 tmp2)
+)
+tmp3 = (let
+(tmp1 tmp2)
+tmp1 = 't
+tmp2 = ""
+(list tmp1 tmp2)
+)
+tmp4 = (let
+(tmp1 tmp2)
+tmp2 = ""
+(list tmp1 tmp2)
+)
+tmp8 = (let
+(tmp1 tmp2)
+tmp2 = ""
+(list tmp1 tmp2)
+)
 tmp9 = "all"
 tmp10 = ""
 tmp11 = ""
@@ -766,6 +781,7 @@ tmp2 = ""
 tmp32 = (let
 (tmp1 tmp2)
 tmp1 = 'enableTimeWindowSetup
+tmp2 = 't
 (list tmp1 tmp2)
 )
 tmp33 = (let
@@ -795,7 +811,7 @@ tmp2 = ""
 tmp37 = (let
 (tmp1 tmp2)
 tmp1 = 'currents
-tmp2 = ""
+tmp2 = "all"
 (list tmp1 tmp2)
 )
 tmp38 = (let
@@ -813,7 +829,7 @@ tmp2 = ""
 tmp40 = (let
 (tmp1 tmp2)
 tmp1 = 'save
-tmp2 = "allpub"
+tmp2 = "all"
 (list tmp1 tmp2)
 )
 tmp41 = (let

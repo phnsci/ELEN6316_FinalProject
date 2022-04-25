@@ -39,6 +39,7 @@
 (analysis tran fields psdminfreq) ""
 (analysis tran fields psdstarttime) ""
 (analysis tran fields stop) "VAR(\"tstop\")"
+(analysis tran fields tranNoise) ""
 (analysis tran fields tranNoiseMultiRuns) ""
 (analysis tran fields trannoisemethod) "default"
 (analysis tran fields transtrobe) ""
