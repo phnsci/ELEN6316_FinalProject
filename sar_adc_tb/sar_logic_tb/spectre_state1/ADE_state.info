@@ -1,0 +1,3 @@
+projectDir = '"/proj/gpfs/qhc/columbia/wa/ELEN6316_FinalProject/simulation"
+designInfo = '("sar_adc_tb" "sar_logic_tb" "schematic" "spectre")
+descriptionText = "None"
