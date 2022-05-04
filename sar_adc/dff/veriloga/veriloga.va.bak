@@ -21,7 +21,7 @@
 `include "discipline.h"
 
 //==============================================================================
-module dff_sr (Qo, Q_, CLK, CLK_bar, D, R, R_bar, S, S_bar, VDD, VSS);
+module dff_sr (Qo, Q_, CLK, CLK_bar, D, R, S, VDD, VSS);
 output Qo;
 electrical Qo;
 output Q_;
@@ -34,14 +34,13 @@ input R;
 electrical R;
 input S;
 electrical S;
-input R_bar;
-input S_bar;
 input CLK_bar;
 
 // INSTANCE PARAMETERS:  
   parameter real vhi = 1.8;		// voltage [v] for logic high
   parameter real vlo = 0 from (-inf:vhi) ; // voltage [v] for logic low
-  
+  parameter real vthresh = 0.5*(vhi+vlo) ; // switch voltage [v]
+
   parameter real tcplhq = 5n from (0: 1m] ;
   			// prop delay from clock to Q, low to high
   parameter real tcphlq = 5n from (0: 1m] ;
@@ -54,14 +53,12 @@ input CLK_bar;
   			// prop delay from set to Q and Q_
   parameter real trpq = 5n from (0: 1m] ;
   			// prop delay from reset to Q and Q_
-
+  parameter real tr = tcplhq from (0:2*tcplhq]; // rise time [s] for gate output
+  parameter real tf = tcphlq from (0:2*tcplhq]; // fall time [s] for gate output
   parameter integer initval = -1 from [-1:1] ; // initial value for Q (X,0,1)
   
 // LOCAL VARIABLES:
-  real vthresh = 0.5*(vhi+vlo) ; // switch voltage [v]
-  real tr = tcplhq from (0:2*tcplhq]; // rise time [s] for gate output
-  real tf = tcphlq from (0:2*tcplhq]; // fall time [s] for gate output
-  real tdelq;  
+   real tdelq;  
   real tdelq_;
   integer s;
   integer r;

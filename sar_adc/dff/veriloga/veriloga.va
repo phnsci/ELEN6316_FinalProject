@@ -21,22 +21,20 @@
 `include "discipline.h"
 
 //==============================================================================
-module dff_sr (Qo, Q_, CLK, CLK_bar, D, R, R_bar, S, S_bar, VDD, VSS);
-output Qo;
-electrical Qo;
-output Q_;
-electrical Q_;
+module dff_sr (Q, Q_BAR, CLK, CLK_BAR, D, RST, SET, vdd, vss);
+output Q;
+electrical Q;
+output Q_BAR;
+electrical Q_BAR;
 input CLK;
 electrical CLK;
 input D;
 electrical D;
-input R;
-electrical R;
-input S;
-electrical S;
-input R_bar;
-input S_bar;
-input CLK_bar;
+input RST;
+electrical RST;
+input SET;
+electrical SET;
+input CLK_BAR;
 
 // INSTANCE PARAMETERS:  
   parameter real vhi = 1.8;		// voltage [v] for logic high
@@ -103,14 +101,14 @@ input CLK_bar;
 	xflag = 1;
      end 		        
      
-      @ (cross(V(S) - vthresh, +1) )	xflag = 1;
-      @ (cross(V(R) - vthresh, +1) )	xflag = 1;
+      @ (cross(V(SET) - vthresh, +1) )	xflag = 1;
+      @ (cross(V(RST) - vthresh, +1) )	xflag = 1;
       @ (cross(V(CLK) - vthresh, +1) )	xflag = 1;
       
       if (xflag) begin
          xflag = 0;
-         s = V(S) > vthresh;
-	 r = V(R) > vthresh;
+         s = V(SET) > vthresh;
+	 r = V(RST) > vthresh;
 	 d = V(D) > vthresh;
 	 qnow = q;
 	 q_now = q_;
@@ -149,7 +147,7 @@ input CLK_bar;
 		   end
 	 end
       end
-      V(Qo) <+ transition( q ? vhi : vlo, tdelq, tr, tf);
-      V(Q_)<+ transition( q_? vhi : vlo, tdelq_, tr, tf);
+      V(Q) <+ transition( q ? vhi : vlo, tdelq, tr, tf);
+      V(Q_BAR)<+ transition( q_? vhi : vlo, tdelq_, tr, tf);
     end
 endmodule
