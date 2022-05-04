@@ -1,0 +1,3 @@
+projectDir = '"~/simulation"
+designInfo = '("sar_adc_tb" "PN_AC_sar_adc_top_tb" "schematic" "spectre")
+descriptionText = "None"

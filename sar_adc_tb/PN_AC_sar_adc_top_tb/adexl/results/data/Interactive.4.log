@@ -1,0 +1,28 @@
+Starting Single Run, Sweeps and Corners...
+
+Current time: Tue May  3 14:18:18 2022 
+Best design point: 1
+Design specs: 
+	sar_adc_tb:PN_AC_sar_adc_top_tb:1	corner	Nominal - 
+Design parameters: 
+	vhi		1.8
+	vlo		0
+	tcplhq		5n
+	tcphlq		5n
+	fmult		12
+	unit_cap		50f
+	fsamp		10K
+	J		127
+	M		2.048K
+	tstart		2n
+	pts_per_symbol		32
+	tstop		1.613m
+	flogic		120K
+	_tstop		205.8m
+	tstep		260.4n
+
+Interactive.4
+Number of points completed: 2
+Number of simulation errors: 0
+Interactive.4 completed. 
+Current time: Tue May  3 14:35:32 2022 
