@@ -30,7 +30,7 @@ parameter real vref  = 1 from [0:inf);
 parameter real trise = 1n from [0:inf);
 parameter real tfall = 1n from [0:inf);
 parameter real tdel  = 0 from [0:inf);
-parameter real vtrans  = 0.5;
+parameter real vtrans  = 0.9;
 
     real out_scaled; // output scaled as fraction of 256
 
